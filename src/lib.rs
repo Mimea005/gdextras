@@ -1,19 +1,36 @@
 #[macro_export]
 macro_rules! gd_print {
 
-    (p,$($args:tt)*) => (
-        godot_print!("[rust]: {}",format!($($args)*));
+    ($tag:ident, $type:ident, $($args:tt)*) => (
+        {
+            gd_print!(tag_entity!($tag), $type, $($args)*);
+        }
     );
 
-    (w,$($args:tt)*) => (
-        godot_warn!("[rust]: {}",format!($($args)*));
+    ($name:expr, $type:ident, $($args:tt)*) => (
+            {
+                let msg = format!($($args)*);
+                gd_print!($type, "{}", format!("[{}]: {}", $name, msg));
+            }
+
     );
 
-    (e,$($args:tt)*) => (
-        godot_error!("[rust]: {}",format!($($args)*));
+    (p, $($args:tt)*) => (
+        godot_print!($($args)*);
     );
 
-    ($($args:tt)*) => (
-        gd_print!(p, $($args)*);
-    )
+    (w, $($args:tt)*) => (
+        godot_warn!($($args)*);
+    );
+
+    (e, $($args:tt)*) => (
+        godot_error!($($args)*);
+    );
+}
+
+#[macro_export]
+macro_rules! tag_entity {
+    ($owner:ident) => ({
+        format!("{}:{}",$owner.get_class(), $owner.name())
+    })
 }
