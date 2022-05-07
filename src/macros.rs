@@ -1,13 +1,18 @@
 #[macro_export]
-/// Wrapper around `godot_print!`, `godot_warn!` and `godot_error!`
+/// Wrapper around `godot_print!` -> `gd_print!(p, "")`,
+///                `godot_warn!` -> `gd_print!(w, "")` and
+///                `godot_error!` -> `gd_print!(e, "")`
+///
 /// If given a godotObject, it will add `ta_entity!` to the start of the text
+///
 /// Or if given a string before the type specifier will display the text as the tag
+///
 /// Else it will print with the tag `[rust]`
 macro_rules! gd_print {
 
     ($tag:ident, $type:ident, $($args:tt)*) => (
         {
-            gd_print!(tag_entity!($tag), -$type, $($args)*);
+            gd_print!(tag_entity!($tag), $type, $($args)*);
         }
     );
 
