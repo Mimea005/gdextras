@@ -45,8 +45,7 @@ macro_rules! gd_print {
 
 #[macro_export]
 /// Create a string tag of the GodotObject passed to print in console
+#[macro_export]
 macro_rules! tag_entity {
-    ($owner:ident) => ({
-        format!("{}:{}",$owner.get_class(), $owner.name())
-    })
+    ($owner:ident) => {format!("{} ({})", $owner.name(), $owner.get_class())};
 }
