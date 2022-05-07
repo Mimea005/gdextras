@@ -1,36 +1,10 @@
-#[macro_export]
-macro_rules! gd_print {
+#![deny(missing_docs)]
 
-    ($tag:ident, $type:ident, $($args:tt)*) => (
-        {
-            gd_print!(tag_entity!($tag), $type, $($args)*);
-        }
-    );
+//!
+//! Collection of macros for godot-rust
+//!
 
-    ($name:expr, $type:ident, $($args:tt)*) => (
-            {
-                let msg = format!($($args)*);
-                gd_print!($type, "{}", format!("[{}]: {}", $name, msg));
-            }
-
-    );
-
-    (p, $($args:tt)*) => (
-        godot_print!($($args)*);
-    );
-
-    (w, $($args:tt)*) => (
-        godot_warn!($($args)*);
-    );
-
-    (e, $($args:tt)*) => (
-        godot_error!($($args)*);
-    );
-}
-
-#[macro_export]
-macro_rules! tag_entity {
-    ($owner:ident) => ({
-        format!("{}:{}",$owner.get_class(), $owner.name())
-    })
-}
+mod macros;
+mod functions;
+pub use macros::*;
+pub use functions::*;
