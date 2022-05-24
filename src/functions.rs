@@ -30,7 +30,7 @@ where
 ///     - Node does not exist
 ///     - Node exist but cannot be turned into an instance `T`
 ///     - Node has the wrong Base type `B`
-fn get_instance<'a, I,B,T>(owner: &'a I, request: &str) -> Result<TInstance<'a, T>, String>
+pub fn get_instance<'a, I,B,T>(owner: &'a I, request: &str) -> Result<TInstance<'a, T>, String>
     where
         I: GodotObject + NodeResolveExt<String>,
         B: GodotObject+ SubClass<Node>,
