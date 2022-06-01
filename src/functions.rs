@@ -1,4 +1,4 @@
-use std::fmt::{Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 use gdnative::prelude::*;
 
 /// Error type to describe what failed when getting a node/instance from a tree
@@ -14,12 +14,12 @@ pub enum FetchError {
     NotInstance(String)
 }
 
-impl Display for FetchError {
+impl Debug for FetchError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match &self {
-            FetchError::NodeMissing(req) => write!(f, "Object '{}' not found in the provided scene tree", req),
-            FetchError::CastErr(req) => write!(f, "Unable to cast to target type '{}'", req),
-            FetchError::NotInstance(req) => write!(f, "Object '{}' is not an instance", req),
+            FetchError::NodeMissing(req) => write!(f, "[FetchError request: {} ]", req),
+            FetchError::CastErr(req) => write!(f, "[CastErr request: {} ]", req),
+            FetchError::NotInstance(req) => write!(f, "[NotInstance request: {} ]", req),
         }
     }
 }
