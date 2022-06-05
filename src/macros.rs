@@ -1,4 +1,3 @@
-#[macro_export]
 /// Wrapper around `godot_print!` -> `gd_print!(p, "")`,
 ///                `godot_warn!` -> `gd_print!(w, "")` and
 ///                `godot_error!` -> `gd_print!(e, "")`
@@ -8,6 +7,7 @@
 /// Or if given a string before the type specifier will display the text as the tag
 ///
 /// Else it will print with the tag `[rust]`
+#[macro_export]
 macro_rules! gd_print {
 
     ($tag:ident, $type:ident, $($args:tt)*) => (
@@ -43,7 +43,6 @@ macro_rules! gd_print {
     );
 }
 
-#[macro_export]
 /// Create a string tag of the GodotObject passed to print in console
 #[macro_export]
 macro_rules! tag_entity {
