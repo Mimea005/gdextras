@@ -7,3 +7,4 @@ repository = "https://github.com/Mimea005/gdextras.git"
 
 [dependencies]
 gdnative = "~0.10.0"
+num-traits = "0.2"

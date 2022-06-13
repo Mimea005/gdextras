@@ -10,3 +10,4 @@ mod test_class;
 
 pub use macros::*;
 pub use functions::*;
+pub mod math;
